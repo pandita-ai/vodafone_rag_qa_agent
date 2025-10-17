@@ -1,9 +1,15 @@
-run = "python backend/main.py"
-entrypoint = "main.py"
+run = "python setup.py"
+entrypoint = "setup.py"
 modules = ["python-3.11"]
 
 [nix]
 channel = "stable-24_05"
 
 [deployment]
-run = ["sh", "-c", "python backend/main.py"]
+run = ["sh", "-c", "python setup.py"]
+
+[env]
+PYTHONPATH = "${PWD}"
+
+[interpreter]
+command = ["python3", "-u", "setup.py"]
