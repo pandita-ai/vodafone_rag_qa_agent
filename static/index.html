@@ -15,9 +15,9 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #0a0a0a;
             min-height: 100vh;
-            color: #333;
+            color: #ffffff;
         }
 
         .container {
@@ -28,33 +28,36 @@
 
         .header {
             text-align: center;
-            margin-bottom: 3rem;
-            color: white;
+            margin-bottom: 4rem;
         }
 
         .header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, #f0f0f0);
+            background: linear-gradient(135deg, #ffffff, #a0a0a0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            letter-spacing: -0.02em;
         }
 
         .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            color: #a0a0a0;
+            max-width: 600px;
+            margin: 0 auto;
             font-weight: 300;
+            line-height: 1.5;
         }
 
         .main-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(20, 20, 20, 0.8);
             backdrop-filter: blur(20px);
             border-radius: 24px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .search-container {
@@ -64,19 +67,25 @@
 
         .search-input {
             width: 100%;
-            padding: 1.2rem 1.5rem;
+            padding: 1.5rem 1.8rem;
             font-size: 1.1rem;
-            border: 2px solid #e1e5e9;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 16px;
             outline: none;
             transition: all 0.3s ease;
-            background: #f8f9fa;
+            background: rgba(30, 30, 30, 0.8);
+            color: #ffffff;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input::placeholder {
+            color: #666;
         }
 
         .search-input:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-            background: white;
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+            background: rgba(40, 40, 40, 0.9);
         }
 
         .search-button {
@@ -84,19 +93,20 @@
             right: 8px;
             top: 50%;
             transform: translateY(-50%);
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
+            color: #0a0a0a;
             border: none;
             padding: 0.8rem 1.5rem;
             border-radius: 12px;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .search-button:hover {
             transform: translateY(-50%) scale(1.05);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
         }
 
         .search-button:disabled {
@@ -114,8 +124,8 @@
         .spinner {
             width: 40px;
             height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #ffffff;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 1rem;
@@ -131,28 +141,30 @@
         }
 
         .answer-section {
-            background: #f8f9fa;
+            background: rgba(30, 30, 30, 0.6);
             border-radius: 16px;
-            padding: 1.5rem;
+            padding: 2rem;
             margin-bottom: 2rem;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #ffffff;
+            backdrop-filter: blur(10px);
         }
 
         .answer-text {
             font-size: 1.1rem;
-            line-height: 1.6;
-            color: #333;
-            margin-bottom: 1rem;
+            line-height: 1.7;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
         }
 
         .confidence-badge {
             display: inline-block;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 0.4rem 0.8rem;
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: 500;
+            margin-bottom: 1.5rem;
         }
 
         .sources-section {
@@ -162,103 +174,140 @@
         .sources-title {
             font-size: 1.2rem;
             font-weight: 600;
+            color: #ffffff;
             margin-bottom: 1rem;
-            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .source-item {
-            background: white;
-            border: 1px solid #e1e5e9;
+            background: rgba(40, 40, 40, 0.6);
             border-radius: 12px;
-            padding: 1rem;
+            padding: 1.5rem;
             margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
 
         .source-item:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
+            background: rgba(50, 50, 50, 0.8);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .source-content {
+            color: #e0e0e0;
             font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 0.5rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
         }
 
-        .source-meta {
+        .source-metadata {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: #888;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
-        .source-topic {
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
+        .source-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
             font-weight: 500;
         }
 
         .relevance-score {
-            color: #4caf50;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
             font-weight: 500;
         }
 
-        .example-queries {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #e1e5e9;
+        .examples-section {
+            margin-top: 3rem;
         }
 
-        .example-title {
-            font-size: 1.1rem;
+        .examples-title {
+            font-size: 1.3rem;
             font-weight: 600;
-            margin-bottom: 1rem;
-            color: #333;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-align: center;
         }
 
-        .example-query {
-            display: inline-block;
-            background: #f8f9fa;
-            border: 1px solid #e1e5e9;
-            border-radius: 20px;
-            padding: 0.5rem 1rem;
-            margin: 0.25rem;
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .example-item {
+            background: rgba(30, 30, 30, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
-            color: #666;
+            backdrop-filter: blur(10px);
         }
 
-        .example-query:hover {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
+        .example-item:hover {
+            background: rgba(40, 40, 40, 0.8);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .example-text {
+            color: #e0e0e0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer p {
+            color: #666;
+            font-size: 0.9rem;
         }
 
         .error-message {
-            background: #ffebee;
-            border: 1px solid #ffcdd2;
-            color: #c62828;
+            background: rgba(255, 100, 100, 0.1);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+            color: #ff6b6b;
             padding: 1rem;
             border-radius: 12px;
-            margin: 1rem 0;
+            margin-bottom: 1rem;
+            text-align: center;
         }
 
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
             }
-            
+
             .header h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
-            
+
             .main-card {
-                padding: 1.5rem;
+                padding: 2rem;
+            }
+
+            .search-input {
+                padding: 1.2rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .examples-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -266,82 +315,88 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1><i class="fas fa-balance-scale"></i> Paralegal AI Assistant</h1>
-            <p>Intelligent legal research powered by advanced AI</p>
+            <h1>Paralegal AI Assistant</h1>
+            <p>Intelligent legal research powered by advanced AI. Ask questions about contract law, tort law, property law, and more.</p>
         </div>
 
         <div class="main-card">
             <div class="search-container">
-                <input 
-                    type="text" 
-                    class="search-input" 
-                    id="queryInput" 
-                    placeholder="Ask a legal question... (e.g., 'What are the elements of negligence?')"
-                    onkeypress="handleKeyPress(event)"
-                >
-                <button class="search-button" id="searchButton" onclick="searchQuery()">
+                <input type="text" id="searchInput" class="search-input" placeholder="Ask a legal question... (e.g., 'What are the elements of a valid contract?')" />
+                <button id="searchButton" class="search-button">
                     <i class="fas fa-search"></i> Search
                 </button>
             </div>
 
-            <div class="loading" id="loading">
+            <div id="loading" class="loading">
                 <div class="spinner"></div>
                 <p>Analyzing legal documents...</p>
             </div>
 
-            <div class="result-container" id="resultContainer">
-                <div class="answer-section" id="answerSection">
-                    <div class="answer-text" id="answerText"></div>
-                    <div class="confidence-badge" id="confidenceBadge"></div>
+            <div id="resultContainer" class="result-container">
+                <div id="answerSection" class="answer-section">
+                    <div id="answerText" class="answer-text"></div>
+                    <div id="confidenceBadge" class="confidence-badge"></div>
                 </div>
 
-                <div class="sources-section" id="sourcesSection">
-                    <div class="sources-title">Sources</div>
+                <div id="sourcesSection" class="sources-section">
+                    <h3 class="sources-title">
+                        <i class="fas fa-book"></i>
+                        Sources
+                    </h3>
                     <div id="sourcesList"></div>
                 </div>
             </div>
 
-            <div class="example-queries">
-                <div class="example-title">Try these example questions:</div>
-                <div class="example-query" onclick="setQuery('What are the elements of a valid contract?')">Contract formation</div>
-                <div class="example-query" onclick="setQuery('What is adverse possession?')">Adverse possession</div>
-                <div class="example-query" onclick="setQuery('What are the elements of negligence?')">Negligence</div>
-                <div class="example-query" onclick="setQuery('What is employment at will?')">Employment law</div>
-                <div class="example-query" onclick="setQuery('What does the First Amendment protect?')">Constitutional law</div>
+            <div class="examples-section">
+                <h3 class="examples-title">Example Questions</h3>
+                <div class="examples-grid">
+                    <div class="example-item" onclick="setExampleQuery('What are the elements of negligence in tort law?')">
+                        <div class="example-text">What are the elements of negligence in tort law?</div>
+                    </div>
+                    <div class="example-item" onclick="setExampleQuery('How does adverse possession work?')">
+                        <div class="example-text">How does adverse possession work?</div>
+                    </div>
+                    <div class="example-item" onclick="setExampleQuery('What constitutes a valid contract?')">
+                        <div class="example-text">What constitutes a valid contract?</div>
+                    </div>
+                    <div class="example-item" onclick="setExampleQuery('What is the difference between assault and battery?')">
+                        <div class="example-text">What is the difference between assault and battery?</div>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <div class="footer">
+            <p>Powered by AI • Legal Research Assistant</p>
         </div>
     </div>
 
     <script>
-        const API_BASE = window.location.origin;
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const loading = document.getElementById('loading');
+        const resultContainer = document.getElementById('resultContainer');
+        const answerText = document.getElementById('answerText');
+        const confidenceBadge = document.getElementById('confidenceBadge');
+        const sourcesList = document.getElementById('sourcesList');
 
-        function setQuery(query) {
-            document.getElementById('queryInput').value = query;
-            searchQuery();
+        function setExampleQuery(query) {
+            searchInput.value = query;
+            searchInput.focus();
         }
 
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                searchQuery();
-            }
-        }
-
-        async function searchQuery() {
-            const query = document.getElementById('queryInput').value.trim();
+        async function search() {
+            const query = searchInput.value.trim();
             if (!query) return;
 
-            const searchButton = document.getElementById('searchButton');
-            const loading = document.getElementById('loading');
-            const resultContainer = document.getElementById('resultContainer');
-
             // Show loading state
-            searchButton.disabled = true;
-            searchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
             loading.style.display = 'block';
             resultContainer.style.display = 'none';
+            searchButton.disabled = true;
+            searchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
 
             try {
-                const response = await fetch(`${API_BASE}/query`, {
+                const response = await fetch('/query', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -358,37 +413,31 @@
 
                 const data = await response.json();
                 displayResults(data);
-
             } catch (error) {
                 console.error('Error:', error);
                 displayError('Sorry, there was an error processing your request. Please try again.');
             } finally {
-                // Reset button state
+                loading.style.display = 'none';
                 searchButton.disabled = false;
                 searchButton.innerHTML = '<i class="fas fa-search"></i> Search';
-                loading.style.display = 'none';
             }
         }
 
         function displayResults(data) {
-            const resultContainer = document.getElementById('resultContainer');
-            const answerText = document.getElementById('answerText');
-            const confidenceBadge = document.getElementById('confidenceBadge');
-            const sourcesList = document.getElementById('sourcesList');
-
-            // Display answer
             answerText.textContent = data.answer;
-            confidenceBadge.textContent = `Confidence: ${Math.round(data.confidence * 100)}%`;
-
-            // Display sources
+            
+            const confidence = Math.round(data.confidence * 100);
+            confidenceBadge.textContent = `Confidence: ${confidence}%`;
+            
             sourcesList.innerHTML = '';
             data.sources.forEach((source, index) => {
                 const sourceItem = document.createElement('div');
                 sourceItem.className = 'source-item';
                 sourceItem.innerHTML = `
                     <div class="source-content">${source.content}</div>
-                    <div class="source-meta">
-                        <span class="source-topic">${source.metadata.topic}</span>
+                    <div class="source-metadata">
+                        <span class="source-tag">${source.metadata.type}</span>
+                        <span class="source-tag">${source.metadata.topic}</span>
                         <span class="relevance-score">Relevance: ${Math.round(source.relevance_score * 100)}%</span>
                     </div>
                 `;
@@ -399,14 +448,22 @@
         }
 
         function displayError(message) {
-            const resultContainer = document.getElementById('resultContainer');
-            resultContainer.innerHTML = `
-                <div class="error-message">
-                    <i class="fas fa-exclamation-triangle"></i> ${message}
-                </div>
-            `;
+            answerText.innerHTML = `<div class="error-message">${message}</div>`;
+            confidenceBadge.textContent = '';
+            sourcesList.innerHTML = '';
             resultContainer.style.display = 'block';
         }
+
+        // Event listeners
+        searchButton.addEventListener('click', search);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                search();
+            }
+        });
+
+        // Focus search input on page load
+        searchInput.focus();
     </script>
 </body>
 </html>
