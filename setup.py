@@ -28,14 +28,16 @@ def main():
     
     print("🎉 Setup complete! Starting the application...")
     
-    # Start the application
+    # Start the application using the main.py entry point
     try:
-        import uvicorn
-        from backend.main import app
-        uvicorn.run(app, host="0.0.0.0", port=8000)
-    except ImportError as e:
-        print(f"❌ Import error: {e}")
-        print("Please make sure all dependencies are installed correctly.")
+        import subprocess
+        subprocess.run([sys.executable, "main.py"], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Error starting application: {e}")
+        print("Please check the application logs for more details.")
+        sys.exit(1)
+    except Exception as e:
+        print(f"❌ Unexpected error: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":

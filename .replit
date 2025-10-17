@@ -1,15 +1,15 @@
-run = "python setup.py"
-entrypoint = "setup.py"
+run = "python start_replit.py"
+entrypoint = "start_replit.py"
 modules = ["python-3.11"]
 
 [nix]
 channel = "stable-24_05"
 
 [deployment]
-run = ["sh", "-c", "python setup.py"]
+run = ["sh", "-c", "python start_replit.py"]
 
 [env]
-PYTHONPATH = "${PWD}"
+PYTHONPATH = "${PWD}:${PWD}/backend"
 
 [interpreter]
-command = ["python3", "-u", "setup.py"]
+command = ["python3", "-u", "start_replit.py"]
