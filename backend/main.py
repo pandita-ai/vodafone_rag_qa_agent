@@ -10,7 +10,7 @@ import uvicorn
 
 load_dotenv()
 
-app = FastAPI(title="Paralegal RAG Agent", version="1.0.0")
+app = FastAPI(title="LegalAssistant Agent", version="1.0.0")
 
 # CORS middleware
 app.add_middleware(
@@ -35,7 +35,7 @@ class QueryResponse(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"message": "Paralegal RAG Agent API"}
+    return {"message": "LegalAssistant Agent API"}
 
 @app.post("/query", response_model=QueryResponse)
 async def query_documents(request: QueryRequest):

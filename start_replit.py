@@ -89,7 +89,7 @@ def start_application():
 
 def main():
     """Main startup function"""
-    print("Starting Paralegal RAG Agent...")
+    print("Starting LegalAssistant Agent...")
     print("=" * 50)
     
     # Setup Python path

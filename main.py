@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Replit entry point for the Paralegal RAG Agent
+Replit entry point for the LegalAssistant Agent
 """
 import sys
 import os

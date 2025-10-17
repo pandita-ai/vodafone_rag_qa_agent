@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Installing Paralegal RAG Agent dependencies..."
+echo "Installing LegalAssistant Agent dependencies..."
 
 # Upgrade pip
 python3 -m pip install --upgrade pip

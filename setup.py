@@ -19,7 +19,7 @@ def install_requirements():
 
 def main():
     """Main setup function"""
-    print("Setting up Paralegal RAG Agent...")
+    print("Setting up LegalAssistant Agent...")
     
     # Install requirements
     if not install_requirements():
