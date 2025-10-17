@@ -5,7 +5,7 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import os
 from dotenv import load_dotenv
-from rag_service import RAGService
+from .rag_service import RAGService
 import uvicorn
 
 load_dotenv()
@@ -54,11 +54,17 @@ async def health_check():
     return {"status": "healthy"}
 
 # Serve static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
+static_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")
+if os.path.exists(static_dir):
+    app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 @app.get("/demo")
 async def serve_demo():
-    return FileResponse("static/index.html")
+    static_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static", "index.html")
+    if os.path.exists(static_file):
+        return FileResponse(static_file)
+    else:
+        return {"error": "Demo page not found"}
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

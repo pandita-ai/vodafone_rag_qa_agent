@@ -13,11 +13,17 @@ class RAGService:
         self.openai_client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
         
-        # Initialize ChromaDB
-        self.chroma_client = chromadb.Client(Settings(
-            chroma_db_impl="duckdb+parquet",
-            persist_directory="./chroma_db"
-        ))
+        # Initialize ChromaDB with error handling
+        try:
+            # Try persistent storage first
+            self.chroma_client = chromadb.Client(Settings(
+                chroma_db_impl="duckdb+parquet",
+                persist_directory="./chroma_db"
+            ))
+        except Exception as e:
+            print(f"Warning: Persistent ChromaDB failed ({e}), using in-memory storage")
+            # Fallback to in-memory storage
+            self.chroma_client = chromadb.Client()
         
         # Get or create collection
         try:

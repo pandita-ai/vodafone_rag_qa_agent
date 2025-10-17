@@ -1,52 +1,118 @@
 #!/usr/bin/env python3
 """
-Simple startup script for Replit deployment
+Robust startup script for Replit deployment
 """
 import sys
 import os
 import subprocess
+import traceback
 
-def main():
-    print("🚀 Starting Paralegal RAG Agent...")
+def install_dependencies():
+    """Install required dependencies"""
+    print("📦 Installing dependencies...")
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+        print("✅ Dependencies installed successfully")
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Failed to install dependencies: {e}")
+        return False
+
+def check_dependencies():
+    """Check if all required dependencies are available"""
+    required_modules = ['fastapi', 'uvicorn', 'openai', 'chromadb', 'sentence_transformers']
+    missing = []
     
-    # Add current directory to Python path
+    for module in required_modules:
+        try:
+            __import__(module)
+        except ImportError:
+            missing.append(module)
+    
+    if missing:
+        print(f"❌ Missing dependencies: {', '.join(missing)}")
+        return False
+    
+    print("✅ All dependencies available")
+    return True
+
+def setup_python_path():
+    """Setup Python path for imports"""
     current_dir = os.path.dirname(os.path.abspath(__file__))
     backend_dir = os.path.join(current_dir, 'backend')
-    sys.path.insert(0, current_dir)
-    sys.path.insert(0, backend_dir)
     
-    # Install requirements if needed
-    try:
-        import fastapi
-        import uvicorn
-        import openai
-        print("✅ Dependencies already installed")
-    except ImportError:
-        print("📦 Installing dependencies...")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
-        print("✅ Dependencies installed")
+    # Add paths to sys.path
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+    if backend_dir not in sys.path:
+        sys.path.insert(0, backend_dir)
     
-    # Import and start the app
+    print(f"✅ Python path configured: {current_dir}, {backend_dir}")
+
+def start_application():
+    """Start the FastAPI application"""
     try:
+        # Try importing from backend package
         from backend.main import app
         import uvicorn
         
         print("🎯 Starting FastAPI server...")
-        uvicorn.run(app, host="0.0.0.0", port=8000)
+        print("🌐 Server will be available at: http://0.0.0.0:8000")
+        print("📖 API docs will be available at: http://0.0.0.0:8000/docs")
+        print("🎨 Demo interface will be available at: http://0.0.0.0:8000/demo")
+        
+        uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
         
     except ImportError as e:
         print(f"❌ Import error: {e}")
-        print("Trying alternative import...")
+        print("🔍 Full traceback:")
+        traceback.print_exc()
         
-        # Try direct import
+        # Try alternative import method
+        print("\n🔄 Trying alternative import method...")
         try:
+            # Add backend to path and import directly
+            backend_path = os.path.join(os.path.dirname(__file__), 'backend')
+            sys.path.insert(0, backend_path)
+            
             import main as backend_main
             import uvicorn
-            print("🎯 Starting FastAPI server (alternative)...")
-            uvicorn.run(backend_main.app, host="0.0.0.0", port=8000)
+            
+            print("🎯 Starting FastAPI server (alternative method)...")
+            uvicorn.run(backend_main.app, host="0.0.0.0", port=8000, log_level="info")
+            
         except Exception as e2:
-            print(f"❌ Alternative import failed: {e2}")
+            print(f"❌ Alternative import also failed: {e2}")
+            print("🔍 Full traceback:")
+            traceback.print_exc()
             sys.exit(1)
+
+def main():
+    """Main startup function"""
+    print("🚀 Starting Paralegal RAG Agent...")
+    print("=" * 50)
+    
+    # Setup Python path
+    setup_python_path()
+    
+    # Check dependencies
+    if not check_dependencies():
+        print("📦 Installing missing dependencies...")
+        if not install_dependencies():
+            print("❌ Failed to install dependencies. Exiting.")
+            sys.exit(1)
+    
+    # Check environment variables
+    if not os.getenv("OPENAI_API_KEY"):
+        print("⚠️  Warning: OPENAI_API_KEY not set. The app will start but queries may fail.")
+        print("   Please set your OpenAI API key in Replit Secrets.")
+    else:
+        print("✅ OpenAI API key found")
+    
+    print("=" * 50)
+    
+    # Start the application
+    start_application()
 
 if __name__ == "__main__":
     main()

@@ -9,7 +9,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'backend'))
 
 # Import and run the main application
-from backend.main import app
+from main import app
 import uvicorn
 
 if __name__ == "__main__":
