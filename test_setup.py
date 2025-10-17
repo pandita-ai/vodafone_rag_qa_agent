@@ -7,48 +7,48 @@ import os
 
 def test_imports():
     """Test all critical imports"""
-    print("🧪 Testing imports...")
+    print("Testing imports...")
     
     try:
         import fastapi
-        print("✅ FastAPI imported successfully")
+        print("FastAPI imported successfully")
     except ImportError as e:
-        print(f"❌ FastAPI import failed: {e}")
+        print(f"FastAPI import failed: {e}")
         return False
     
     try:
         import uvicorn
-        print("✅ Uvicorn imported successfully")
+        print("Uvicorn imported successfully")
     except ImportError as e:
-        print(f"❌ Uvicorn import failed: {e}")
+        print(f"Uvicorn import failed: {e}")
         return False
     
     try:
         import openai
-        print("✅ OpenAI imported successfully")
+        print("OpenAI imported successfully")
     except ImportError as e:
-        print(f"❌ OpenAI import failed: {e}")
+        print(f"OpenAI import failed: {e}")
         return False
     
     try:
         import chromadb
-        print("✅ ChromaDB imported successfully")
+        print("ChromaDB imported successfully")
     except ImportError as e:
-        print(f"❌ ChromaDB import failed: {e}")
+        print(f"ChromaDB import failed: {e}")
         return False
     
     try:
         import sentence_transformers
-        print("✅ Sentence Transformers imported successfully")
+        print("Sentence Transformers imported successfully")
     except ImportError as e:
-        print(f"❌ Sentence Transformers import failed: {e}")
+        print(f"Sentence Transformers import failed: {e}")
         return False
     
     return True
 
 def test_backend_imports():
     """Test backend module imports"""
-    print("\n🧪 Testing backend imports...")
+    print("\nTesting backend imports...")
     
     # Add backend to path
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -57,34 +57,34 @@ def test_backend_imports():
     
     try:
         from main import app
-        print("✅ Backend main module imported successfully")
+        print("Backend main module imported successfully")
     except ImportError as e:
-        print(f"❌ Backend main import failed: {e}")
+        print(f"Backend main import failed: {e}")
         return False
     
     try:
         from rag_service import RAGService
-        print("✅ RAG service imported successfully")
+        print("RAG service imported successfully")
     except ImportError as e:
-        print(f"❌ RAG service import failed: {e}")
+        print(f"RAG service import failed: {e}")
         return False
     
     return True
 
 def test_environment():
     """Test environment setup"""
-    print("\n🧪 Testing environment...")
+    print("\nTesting environment...")
     
     if os.getenv("OPENAI_API_KEY"):
-        print("✅ OpenAI API key found")
+        print("OpenAI API key found")
     else:
-        print("⚠️  OpenAI API key not set (this is expected in test environment)")
+        print("OpenAI API key not set (this is expected in test environment)")
     
     return True
 
 def main():
     """Run all tests"""
-    print("🚀 Running setup tests...")
+    print("Running setup tests...")
     print("=" * 50)
     
     all_passed = True
@@ -103,9 +103,9 @@ def main():
     
     print("=" * 50)
     if all_passed:
-        print("🎉 All tests passed! Setup is ready for deployment.")
+        print("All tests passed! Setup is ready for deployment.")
     else:
-        print("❌ Some tests failed. Please check the errors above.")
+        print("Some tests failed. Please check the errors above.")
     
     return all_passed
 

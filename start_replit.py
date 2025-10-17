@@ -9,13 +9,13 @@ import traceback
 
 def install_dependencies():
     """Install required dependencies"""
-    print("📦 Installing dependencies...")
+    print("Installing dependencies...")
     try:
         subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
-        print("✅ Dependencies installed successfully")
+        print("Dependencies installed successfully")
         return True
     except subprocess.CalledProcessError as e:
-        print(f"❌ Failed to install dependencies: {e}")
+        print(f"Failed to install dependencies: {e}")
         return False
 
 def check_dependencies():
@@ -30,10 +30,10 @@ def check_dependencies():
             missing.append(module)
     
     if missing:
-        print(f"❌ Missing dependencies: {', '.join(missing)}")
+        print(f"Missing dependencies: {', '.join(missing)}")
         return False
     
-    print("✅ All dependencies available")
+    print("All dependencies available")
     return True
 
 def setup_python_path():
@@ -47,7 +47,7 @@ def setup_python_path():
     if backend_dir not in sys.path:
         sys.path.insert(0, backend_dir)
     
-    print(f"✅ Python path configured: {current_dir}, {backend_dir}")
+    print(f"Python path configured: {current_dir}, {backend_dir}")
 
 def start_application():
     """Start the FastAPI application"""
@@ -56,20 +56,20 @@ def start_application():
         from backend.main import app
         import uvicorn
         
-        print("🎯 Starting FastAPI server...")
-        print("🌐 Server will be available at: http://0.0.0.0:8000")
-        print("📖 API docs will be available at: http://0.0.0.0:8000/docs")
-        print("🎨 Demo interface will be available at: http://0.0.0.0:8000/demo")
+        print("Starting FastAPI server...")
+        print("Server will be available at: http://0.0.0.0:8000")
+        print("API docs will be available at: http://0.0.0.0:8000/docs")
+        print("Demo interface will be available at: http://0.0.0.0:8000/demo")
         
         uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
         
     except ImportError as e:
-        print(f"❌ Import error: {e}")
-        print("🔍 Full traceback:")
+        print(f"Import error: {e}")
+        print("Full traceback:")
         traceback.print_exc()
         
         # Try alternative import method
-        print("\n🔄 Trying alternative import method...")
+        print("\nTrying alternative import method...")
         try:
             # Add backend to path and import directly
             backend_path = os.path.join(os.path.dirname(__file__), 'backend')
@@ -78,18 +78,18 @@ def start_application():
             import main as backend_main
             import uvicorn
             
-            print("🎯 Starting FastAPI server (alternative method)...")
+            print("Starting FastAPI server (alternative method)...")
             uvicorn.run(backend_main.app, host="0.0.0.0", port=8000, log_level="info")
             
         except Exception as e2:
-            print(f"❌ Alternative import also failed: {e2}")
-            print("🔍 Full traceback:")
+            print(f"Alternative import also failed: {e2}")
+            print("Full traceback:")
             traceback.print_exc()
             sys.exit(1)
 
 def main():
     """Main startup function"""
-    print("🚀 Starting Paralegal RAG Agent...")
+    print("Starting Paralegal RAG Agent...")
     print("=" * 50)
     
     # Setup Python path
@@ -97,17 +97,17 @@ def main():
     
     # Check dependencies
     if not check_dependencies():
-        print("📦 Installing missing dependencies...")
+        print("Installing missing dependencies...")
         if not install_dependencies():
-            print("❌ Failed to install dependencies. Exiting.")
+            print("Failed to install dependencies. Exiting.")
             sys.exit(1)
     
     # Check environment variables
     if not os.getenv("OPENAI_API_KEY"):
-        print("⚠️  Warning: OPENAI_API_KEY not set. The app will start but queries may fail.")
-        print("   Please set your OpenAI API key in Replit Secrets.")
+        print("Warning: OPENAI_API_KEY not set. The app will start but queries may fail.")
+        print("Please set your OpenAI API key in Replit Secrets.")
     else:
-        print("✅ OpenAI API key found")
+        print("OpenAI API key found")
     
     print("=" * 50)
     
