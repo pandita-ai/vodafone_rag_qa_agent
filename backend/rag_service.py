@@ -2,7 +2,6 @@ import os
 import openai
 from sentence_transformers import SentenceTransformer
 import chromadb
-from chromadb.config import Settings
 import json
 from typing import List, Dict, Any
 import asyncio
@@ -15,11 +14,8 @@ class RAGService:
         
         # Initialize ChromaDB with error handling
         try:
-            # Try persistent storage first
-            self.chroma_client = chromadb.Client(Settings(
-                chroma_db_impl="duckdb+parquet",
-                persist_directory="./chroma_db"
-            ))
+            # Try persistent storage first using new configuration
+            self.chroma_client = chromadb.PersistentClient(path="./chroma_db")
         except Exception as e:
             print(f"Warning: Persistent ChromaDB failed ({e}), using in-memory storage")
             # Fallback to in-memory storage
