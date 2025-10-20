@@ -1,6 +1,6 @@
 run = "python start_replit.py"
 entrypoint = "start_replit.py"
-modules = ["python-3.12", "bash", "nix"]
+modules = ["bash", "nix", "python-3.11"]
 
 [nix]
 channel = "stable-25_05"
@@ -17,6 +17,7 @@ command = ["python3", "-u", "start_replit.py"]
 
 [agent]
 expertMode = true
+integrations = ["python_openai:1.0.0"]
 
 [[ports]]
 localPort = 8000

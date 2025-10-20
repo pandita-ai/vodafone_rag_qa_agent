@@ -1,16 +1,13 @@
 import os
 import openai
-from sentence_transformers import SentenceTransformer
 import chromadb
 import json
 from typing import List, Dict, Any
 import asyncio
-import numpy as np
 
 class RAGService:
     def __init__(self):
         self.openai_client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        self.embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
         
         # Initialize ChromaDB with error handling
         try:
@@ -383,11 +380,19 @@ class RAGService:
                 ids=[doc["id"]]
             )
     
+    def _get_embedding(self, text: str) -> List[float]:
+        """Generate embedding using OpenAI's API"""
+        response = self.openai_client.embeddings.create(
+            model="text-embedding-3-small",
+            input=text
+        )
+        return response.data[0].embedding
+    
     async def query(self, query: str, max_results: int = 5) -> Dict[str, Any]:
         """Query the RAG system with a user question"""
         
-        # Generate embedding for the query
-        query_embedding = self.embedding_model.encode([query]).tolist()[0]
+        # Generate embedding for the query using OpenAI
+        query_embedding = self._get_embedding(query)
         
         # Search for similar documents
         results = self.collection.query(
@@ -432,7 +437,7 @@ class RAGService:
             answer = response.choices[0].message.content
             
             # Calculate confidence based on similarity scores
-            confidence = 1.0 - np.mean(distances) if distances else 0.5
+            confidence = 1.0 - (sum(distances) / len(distances)) if distances else 0.5
             
             # Prepare sources
             sources = []
