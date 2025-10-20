@@ -57,11 +57,11 @@ def start_application():
         import uvicorn
         
         print("Starting FastAPI server...")
-        print("Server will be available at: http://0.0.0.0:8000")
-        print("API docs will be available at: http://0.0.0.0:8000/docs")
-        print("Demo interface will be available at: http://0.0.0.0:8000/demo")
+        print("Server will be available at: http://0.0.0.0:5000")
+        print("API docs will be available at: http://0.0.0.0:5000/docs")
+        print("Demo interface will be available at: http://0.0.0.0:5000/demo")
         
-        uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
+        uvicorn.run(app, host="0.0.0.0", port=5000, log_level="info")
         
     except ImportError as e:
         print(f"Import error: {e}")
@@ -79,7 +79,7 @@ def start_application():
             import uvicorn
             
             print("Starting FastAPI server (alternative method)...")
-            uvicorn.run(backend_main.app, host="0.0.0.0", port=8000, log_level="info")
+            uvicorn.run(backend_main.app, host="0.0.0.0", port=5000, log_level="info")
             
         except Exception as e2:
             print(f"Alternative import also failed: {e2}")
