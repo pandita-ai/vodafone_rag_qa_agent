@@ -35,7 +35,11 @@ class QueryResponse(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"message": "LegalAssistant Agent API"}
+    static_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static", "index.html")
+    if os.path.exists(static_file):
+        return FileResponse(static_file)
+    else:
+        return {"message": "LegalAssistant Agent API"}
 
 @app.post("/query", response_model=QueryResponse)
 async def query_documents(request: QueryRequest):
