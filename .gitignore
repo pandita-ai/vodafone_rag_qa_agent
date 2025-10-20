@@ -52,5 +52,10 @@ chroma_db/
 .env.local
 .env.production
 
+# Cache directories (prevent deployment bloat)
+.cache/
+.pythonlibs/
+*.pyc
+
 # Docker
 .dockerignore

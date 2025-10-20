@@ -1,9 +1,10 @@
 run = "python start_replit.py"
 entrypoint = "start_replit.py"
-modules = ["python-3.11"]
+modules = ["python-3.12", "web", "bash", "nix"]
 
 [nix]
-channel = "stable-24_05"
+channel = "stable-25_05"
+packages = ["libxcrypt", "xcodebuild", "zlib"]
 
 [deployment]
 run = ["sh", "-c", "python start_replit.py"]
@@ -13,3 +14,10 @@ PYTHONPATH = "${PWD}:${PWD}/backend"
 
 [interpreter]
 command = ["python3", "-u", "start_replit.py"]
+
+[agent]
+expertMode = true
+
+[[ports]]
+localPort = 8000
+externalPort = 80
