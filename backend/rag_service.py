@@ -18,11 +18,14 @@ class RAGService:
             # Fallback to in-memory storage
             self.chroma_client = chromadb.Client()
         
-        # Get or create collection
+        # Get or create collection without default embedding function
         try:
             self.collection = self.chroma_client.get_collection("legal_documents")
         except:
-            self.collection = self.chroma_client.create_collection("legal_documents")
+            self.collection = self.chroma_client.create_collection(
+                name="legal_documents",
+                metadata={"hnsw:space": "cosine"}
+            )
         
         # Initialize database if empty
         if self.collection.count() == 0:
@@ -372,10 +375,12 @@ class RAGService:
             }
         ]
         
-        # Add documents to collection
+        # Add documents to collection with OpenAI embeddings
         for doc in legal_documents:
+            embedding = self._get_embedding(doc["content"])
             self.collection.add(
                 documents=[doc["content"]],
+                embeddings=[embedding],
                 metadatas=[doc["metadata"]],
                 ids=[doc["id"]]
             )

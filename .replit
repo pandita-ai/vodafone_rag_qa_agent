@@ -20,12 +20,16 @@ expertMode = true
 integrations = ["python_openai:1.0.0"]
 
 [[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
 localPort = 8000
 externalPort = 80
 
 [[ports]]
-localPort = 5000
-externalPort = 80
+localPort = 46557
+externalPort = 3000
 
 [workflows]
 runButton = "Project"

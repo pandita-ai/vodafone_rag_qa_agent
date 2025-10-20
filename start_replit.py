@@ -20,7 +20,7 @@ def install_dependencies():
 
 def check_dependencies():
     """Check if all required dependencies are available"""
-    required_modules = ['fastapi', 'uvicorn', 'openai', 'chromadb', 'sentence_transformers']
+    required_modules = ['fastapi', 'uvicorn', 'openai', 'chromadb']
     missing = []
     
     for module in required_modules:
